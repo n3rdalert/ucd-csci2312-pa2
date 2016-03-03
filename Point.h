@@ -5,21 +5,26 @@
 
 namespace Clustering {
 
-    class Point {
+    class Point
+    {
         unsigned int __id;
         int __dim;        // number of dimensions of the point
         double *__values; // values of the point's dimensions
 
         static unsigned int __idGen; // id generator
 
+
     public:
+        //Constructors
         Point(int);
+
         Point(int, double *);
 
         // Big three: cpy ctor, overloaded operator=, dtor
         Point(const Point &);
-        Point &operator=(const Point &);
+        Point &operator=(const Point&);
         ~Point();
+
 
         // Accessors & mutators
         int getId() const;
@@ -41,8 +46,12 @@ namespace Clustering {
         double &operator[](int index);
 
         // Friends
-        friend Point &operator+=(Point &, const Point &);
+        //COMPOUND ASSIGNMENT OPERATORS
+        friend Point &operator+=(Point &, const Point &);   //implement this one with a loop
         friend Point &operator-=(Point &, const Point &);
+
+        //These functions are returning a point by value.
+        //NOTE: there is no reference operator as the ones listed above.
         friend const Point operator+(const Point &, const Point &);
         friend const Point operator-(const Point &, const Point &);
 
@@ -56,6 +65,8 @@ namespace Clustering {
 
         friend std::ostream &operator<<(std::ostream &, const Point &);
         friend std::istream &operator>>(std::istream &, Point &);
+
+        //Point &operator=(const Point &copy);
     };
 
 }

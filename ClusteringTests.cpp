@@ -7,6 +7,7 @@
 #include <cassert>
 #include <iomanip>
 #include <fstream>
+#include <limits>
 
 #include "ClusteringTests.h"
 #include "Point.h"
@@ -112,6 +113,10 @@ void test_point_id(ErrorContext &ec, unsigned int numRuns) {
                 pass = pass && (points[i]->getId() == (firstId + i));
 
             for (int i=0; i<100; i++)
+
+                //Uncomment this line to see if all the ID's are sequential.
+                //USE THIS FOR DOUBLE-CHECKING
+                // /std::cout << points[i]->getId() << std::endl;
                 delete points[i];
             delete [] points;
 

@@ -5,9 +5,12 @@
 
 namespace Clustering {
 
+    //typedef Point *PointPtr;
     typedef struct LNode *LNodePtr;
 
-    struct LNode {
+    //STRUCT LNode
+    struct LNode
+    {
 
         Point point;
         LNodePtr next;
@@ -15,17 +18,20 @@ namespace Clustering {
 
     };
 
-    class Cluster {
+    //CLASS CLUSTER
+    class Cluster
+    {
 
         int __size;
         LNodePtr __points;
 
-        void __del();
-        void __cpy(LNodePtr pts);
-        bool __in(const Point &p) const;
+//        void __del();
+//        void __cpy(LNodePtr pts);
+//        bool __in(const Point &p) const;
 
 
     public:
+        //Default Constructor
         Cluster();
 
         // The big three: cpy ctor, overloaded operator=, dtor
@@ -55,8 +61,9 @@ namespace Clustering {
         Cluster &operator-=(const Cluster &); // (asymmetric) difference
 
         // Friends: IO
-        friend std::ostream &operator<<(std::ostream &, const Cluster &);
-        friend std::istream &operator>>(std::istream &, Cluster &);
+        friend std::ostream &operator<<(std::ostream &, const Cluster &);   //Const because we're reading out
+        friend std::istream &operator>>(std::istream &, Cluster &);         //not const because reading in.
+                                                                            // we WANT to change the value when reading in.
 
         // Friends: Comparison
         friend bool operator==(const Cluster &, const Cluster &);
